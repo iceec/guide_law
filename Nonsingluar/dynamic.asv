@@ -30,7 +30,7 @@ s = x1 + Beta * x2^Alpha;
 
 
 % 求得制导律
-%a1 = r/cos(yita_m) * ((-2 * dr* x2)/r  + d + 1/(Alpha * Beta) * x2^(2-Alpha)); % s_dot =0
+a1_tmp = r/cos(yita_m) * ((-2 * dr* x2)/r  + d + 1/(Alpha * Beta) * x2^(2-A)); % s_dot =0
 
 
 a1 = abs(dr)*x2 / abs(cos(yita_m)) * (2 + r * x2^(1 - Alpha) / (Alpha * Beta * abs(dr)));
@@ -39,7 +39,9 @@ a1 = abs(dr)*x2 / abs(cos(yita_m)) * (2 + r * x2^(1 - Alpha) / (Alpha * Beta * a
 a2 = M / sign(cos(yita_m)) * sgmf(s); % 使得V稳定的
 am = a1 + a2;
 
-
+if(abs(am) > a_max)
+    am = a_max * sign(am);
+end
 
 ddelt_m = am / vm;
 ddelt_t = 0; % 求得目标的加速度

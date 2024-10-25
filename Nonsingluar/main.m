@@ -72,3 +72,16 @@ end
 figure(1);
 plot(time(1:n-1),AM(1:n-1),'LineWidth',2);
 
+figure(2);
+plot(XM(1:n-1),YM(1:n-1),'LineWidth',2);
+
+
+
+
+
+
+
+
+%%
+%注意 分数开根号很容易出现复数 所以先开下面的在去管理上面的
+

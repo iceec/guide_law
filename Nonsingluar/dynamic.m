@@ -2,7 +2,7 @@
 function [dr,dq,ddelt_m,ddelt_t,s,am] = dynamic(vm,vt,yita_m,yita_t,q,r)
 
 
-qd = 90 / 180 * pi;
+qd = 180 / 180 * pi;
 a_max = 400;
 
 % 表示扰动即为目标的加速度信息
@@ -23,14 +23,14 @@ dq = (vm * sin(yita_m) - vt * sin(yita_t))/r;
 
 % 获取状态变量
 x1 = q - qd;
-x2 = dq;
+x2 = real(dq);
 
 % 表示滑模面
-s = x1 + Beta * x2^Alpha;
+s = x1 + Beta * (nthroot(x2,3))^5;
 
 
 % 求得制导律
-a1 = r/cos(yita_m) * ((-2 * dr* x2)/r  + d + 1/(Alpha * Beta) * x2^(2-Alpha)); % s_dot =0
+a1 = r/cos(yita_m) * ((-2 * dr* x2)/r  + d + 1/(Alpha * Beta) * nthroot(x2,3)); % s_dot =0
 
 
 %a1 = abs(dr)*x2 / abs(cos(yita_m)) * (2 + r * x2^(1 - Alpha) / (Alpha * Beta * abs(dr)));
