@@ -3,17 +3,18 @@ close all;
 clear;
 
 
+
 %导弹的信息
-xm = 0; ym = 0; vm = 500;
-delt_m = 60 / 180 * pi;
+xm = 0; ym = 1000; vm = 250;
+delt_m = 0 / 180 * pi;
 
 %目标的信息
-xt = 5000 * sqrt(3); yt = 5000 ; vt = 0;
+xt = 1000; yt = 0 ; vt = 0;
 delt_t = 0 / 180 * pi;
 
 
 % 相对信息
-q = atan2(yt - ym,xt - xm);  %% 结果应该是30°的
+q = -45 / 180 * pi;  %% 结果应该是30°的
 
 yita_m = q - delt_m;
 yita_t = q  - delt_t;
@@ -64,8 +65,14 @@ ym = ym + vm *sin(delt_m) *h;
 
 n = n+1;
 
+% if(mod(n,1000) == 0)
+%     disp(13.7 - n * h);
+%     disp(tgo);
+% end
+
 end
 
+disp(n * h);
 
 
 % 作图
@@ -76,7 +83,7 @@ figure(2);
 plot(XM(1:n-1),YM(1:n-1),'LineWidth',2);
 
 
-
+%save("n90.mat","XM","YM","AM","n","sum");
 
 
 
@@ -84,4 +91,5 @@ plot(XM(1:n-1),YM(1:n-1),'LineWidth',2);
 
 %%
 %注意 分数开根号很容易出现复数 所以先开下面的在去管理上面的
+%要求yita_tf 和 yita_mf是固定的 不能变动的 表明物体要不能具有加速度
 
