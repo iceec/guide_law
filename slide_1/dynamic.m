@@ -2,12 +2,13 @@
 % 前置角的表达方式是原来的负数
 function [dr,dq,ddelt_m,ddelt_t,Am]=dynamic(vm,vt,q,r,yita_m,yita_t,t)
 
+
 % 固定参数设定
 alpha = 9/7;
 beta = 5;
 M = 100;
 delt_tf = 0 / 180 * pi;
-delt_mf = 90 / 180 * pi;
+delt_mf = 120 / 180 * pi;
 theta_d = delt_tf - delt_mf;
 td = 80;
 K = 5;
@@ -46,7 +47,7 @@ A2a = W(b)*(c+1)/b;
 A2b  = W(b)* -K / b * sgmf(S1t);
 A2 = A2a + A2b;
 
-Am = A1 + A2;
+Am = A1 + A2 + rand(1);
 
 
 if abs(Am) > a_max
