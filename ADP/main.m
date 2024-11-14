@@ -1,6 +1,6 @@
 clear;
 
-
+%仿真时间大差不差但是到最后会发散导致根本制导不了 需要解决
 xm = 0; ym =0; vm = 600; delt_m = 30 / 180 * pi;
 
 xt = 2500; yt = 0; vt = 400;  delt_t = 125/180 * pi;
@@ -26,9 +26,20 @@ AT = zeros(1,N);
 
 n = 1;
 while r > 0 && n <=N
-    [dr,dq,ddelt_m,ddelt_t,am,at,dW]=dynamic(vm,vt,r,q,delt_m,delt_t,W);
+    [dr,dq,ddelt_m,ddelt_t,am,at,dW]=dynamic(vm,vt,r,q,delt_m,delt_t,W,n);
+
+    
     r = r + dr * h;
+    R(n) = r;
+    AM(n) = am;
     q = q + dq *h;
     W = W + dW *h;
     n = n+1;
+
+   
+
+
 end
+
+
+plot(AM(1:n-1));

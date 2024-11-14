@@ -1,8 +1,8 @@
 clear;
 % 打击固定目标 固定目标的版本over
 % 导弹信息
-xm = 10000; ym = -10000; vm = 220;
-delt_m = 90 * pi / 180;
+xm = -6000; ym = 10000; vm = 250;
+delt_m = -60 * pi / 180;
 
 
 %目标信息
@@ -24,6 +24,10 @@ R = zeros(1,N);
 Q = zeros(1,N);
 XM = zeros(1,N);
 YM = zeros(1,N);
+
+XT = zeros(1,N);
+YT = zeros(1,N);
+
 THETA = zeros(1,N);
 AM = zeros(1,N);
 
@@ -36,7 +40,7 @@ yita_t = delt_t - q;
 
 R(n) = r; Q(n) = q;
 
-[dr,dq,ddelt_m,ddelt_t,am]=dynamic(vm,vt,q,r,yita_m,yita_t,n*h);
+[dr,dq,ddelt_m,ddelt_t,am]=dynamic(vm,vt,q,r,yita_m,yita_t,h*n);
 
 r = r + dr *h;
 q = q + dq *h;
@@ -47,7 +51,8 @@ ym = ym + vm * sin(delt_m) * h;
 xt = xt + vt * cos(delt_t) * h;
 yt = yt + vt * sin(delt_t) * h;
 
-XM(n) = xm; YM(n) = ym; AM(n) =am;
+XM(n) = xm; YM(n) = ym; AM(n) =am; 
+XT(n) = xt; YT(n) = yt;
 
 THETA(n) = (delt_t - delt_m) * 180 / pi;
 n = n + 1;
@@ -59,7 +64,7 @@ disp(n);
 
 figure(1);
 
-plot(XM(1:n-1),YM(1:n-1),'LineWidth',2);
+plot(XM(1:n-1),YM(1:n-1),XT(1:n-1),YT(1:n-1),'LineWidth',2);
 
 figure(2);
 

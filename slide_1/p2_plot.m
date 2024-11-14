@@ -28,7 +28,7 @@ T3 = f3.THETA;
 
 
 % figure(1);
-% plot(X1(1:N1),Y1(1:N1),'-k',X2(1:N2),Y2(1:N2),'--k',X3(1:N3),Y3(1:N3),'-.k','LineWidth',0.75);
+% plot(X1(1:N1),Y1(1:N1),'-r',X2(1:N2),Y2(1:N2),'--b',X3(1:N3),Y3(1:N3),'-.k','LineWidth',0.75);
 % hold on
 % plot(0,0,'o','MarkerFaceColor','r');
 % xlabel('X/M');
@@ -36,20 +36,20 @@ T3 = f3.THETA;
 % legend({'Missile1','Missile2','Missile3','target'},'Location','best');
 
 
-figure(2);
-
-plot(time(1:N1-2),A1(1:N1-2),'-k',time(1:N2-2),A2(1:N2-2),'--k',time(1:N3-2),A3(1:N3-2),'-.k','LineWidth',0.75);
-
- xlabel('t/s');
- ylabel('a_{m}/(m\cdot s^{-2})');
-legend({'Missile1','Missile2','Missile3'},'Location','best');
-
-
-
-% figure(3);
+% figure(2);
 % 
-% plot(time(1:N1),T1(1:N1),'-k',time(1:N2),T2(1:N2),'--k',time(1:N3),T3(1:N3),'-.k','LineWidth',0.75);
+% plot(time(1:N1-2),A1(1:N1-2),'-r',time(1:N2-2),A2(1:N2-2),'--b',time(1:N3-2),A3(1:N3-2),'-.k','LineWidth',0.75);
 % 
-% xlabel('t/s');
-% ylabel('\theta_{imp}/(\circ)');
+%  xlabel('t/s');
+%  ylabel('a_{m}/(m\cdot s^{-2})');
 % legend({'Missile1','Missile2','Missile3'},'Location','best');
+
+
+
+figure(3);
+
+plot(time(1:N1),T1(1:N1),'-r',time(1:N2),T2(1:N2),'--b',time(1:N3),T3(1:N3),'-.k','LineWidth',0.75);
+
+xlabel('t/s');
+ylabel('\theta_{imp}/(\circ)');
+legend({'Missile1','Missile2','Missile3'},'Location','best');

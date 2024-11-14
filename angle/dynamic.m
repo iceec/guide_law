@@ -7,7 +7,7 @@ yita_m_max = 45 * pi / 180; % 45
 
 sigema = 0.1;
 
-qd = -60 * pi / 180;
+qd = 90 * pi / 180;
 
 k1 = 2;
 
@@ -51,7 +51,7 @@ w = (kc) / (abs(x1) + sigema);
 a1 = -w *x1;
 s = w * x1 + x2;
 
-tmp_p = log((kc + s + a1) * (kc - a1) / ((kc -s -a1) * (kc +a1)));
+tmp_p = real(log((kc + s + a1) * (kc - a1) / ((kc -s -a1) * (kc +a1))));
 
 p = kc * tmp_p /(2*s);
 

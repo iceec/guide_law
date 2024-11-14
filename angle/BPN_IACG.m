@@ -6,15 +6,15 @@
 clc; close all;clear;
 
 % 导弹的信息
-xm = -10000; ym = 500; vm = 250; delm = 30 / 180 * pi;
-am_limit = 5 * 9.81; % 过载限制
-delm_d = -60 /180 * pi; % 期望攻击角度
+xm = -10000; ym = 2000; vm = 250; delm = -60 / 180 * pi;
+am_limit = 10 * 9.81; % 过载限制
+delm_d = 90 /180 * pi; % 期望攻击角度
 N=3; %应用于比例导引 
 K=3; %应用于攻击角度 
 dt = 0.001;
 
 % 目标的信息
-xt = 0; yt = 0; vt = 0; delt = 0;
+xt = 0; yt = 0; vt = 100; delt = 30/180*pi;
 
 
 %初始的状态信息
@@ -52,12 +52,11 @@ while r > 1
 end
 
 % 
-% figure(1);
-% plot(XM,YM,'LineWidth',2);
-% figure(2);
-% plot(DELM,'LineWidth',2);
+figure(1);
+plot(XM,YM,'LineWidth',2);
+figure(2);
+plot(DELM,'LineWidth',2);
 figure(3);
 plot(AM,'LineWidth',2);
-figure(4);
-plot(YITA_M,'LineWidth',2);
-r
+% figure(4);
+% plot(YITA_M,'LineWidth',2);

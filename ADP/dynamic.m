@@ -1,5 +1,5 @@
 % yita_m 还是取得是相反的  
-function [dr,dq,ddelt_m,ddelt_t,am,at,dW] = dynamic(vm,vt,r,q,delt_m,delt_t,W)
+function [dr,dq,ddelt_m,ddelt_t,am,at,dW] = dynamic(vm,vt,r,q,delt_m,delt_t,W,n)
 
 %代价函数
 R1 = 0.1; % 表示am的
@@ -7,6 +7,15 @@ R2 = 0.1; % 表示at的
 Q1 = 200;
 ac = 0.07;
 as = 10;
+
+s1 = 115;
+s2 = 10;
+
+t1 = f(10);
+t2 = f(25);
+t3 = f(15);
+t4 = f(1);
+
 
 %评价网络的参数
 %W 是要每次都传进来求出dW给出去
@@ -16,7 +25,7 @@ yita_m = delt_m - q;
 yita_t = delt_t - q;
 
 
-dr = vt * cos(yita_t) -vm * cos(yita_m);
+dr = -vt * cos(yita_t) -vm * cos(yita_m);
 dq = (vt * sin(yita_t) - vm * sin(yita_m))/r;
 
 %定义状态变量  确定激活函数
@@ -30,8 +39,19 @@ kx = cos(yita_t)/r;
 
 
 %求最优的am和at
-am = -0.5/R1 * gx * dactive' * W;
-at = 0.5/R2 * kx * dactive' *W;
+am = -(1*s1)/2*(1/R1) * gx' * dactive' * W;
+at =  1/(2*s2)*(1/R2)* kx' * dactive' *W; % 100 * sin((0.001 * n)/180 * pi); 
+
+%omega = dactive * dx;
+
+
+
+am = am + t1 * x * cos((t2 * x + t3 * x^2)/180 * pi);
+at = at + t4 * sin(x/180 *pi) * x;
+
+
+dx = fx + gx*am + kx * at;
+
 
 ddelt_m = am / vm;
 ddelt_t = at / vt;
@@ -48,15 +68,18 @@ part2 = -1/4 * W' * dactive * gx * (1/R1) * gx' * dactive' * W;
 part3 = 1/4 * W' *dactive * kx * (1/R2) * kx' * dactive' * W;
 ec = Qx + part1 + part2 + part3;  % 1*1
 
-% n*1
-ec_d_w = dactive * fx - 1/2 *  dactive * gx * (1/R1) * gx' * dactive' * W + 1/2 * dactive * kx * (1/R2) * kx' * dactive' * W;
+
+% n*1  这个没算错 
+ec_d_w =  dactive * fx - 1/2 *  dactive * gx * (1/R1) * gx' * dactive' * W + 1/2 * dactive * kx * (1/R2) * kx' * dactive' * W;
+
+%disp(ec_d_w);
 
 
 
 % 求附加项的值
 % Jx = 0.5 * x^2 -> x
-dx = fx + gx*am + kx * at;
-dJx = x * dx;
+
+dJx = x' * dx;
 
 item = 0;
 if dJx < 0
@@ -67,7 +90,6 @@ dW_p1 = 0.5 * as * item * dactive * gx * (1/R1) * gx' * x;  % x 表示dJ
 dW_p2 = -0.5 * as * item * dactive * kx * (1/R2) * kx' * x;
 
 dW = -ac * ec_d_w *ec + dW_p1 + dW_p2;
-
 
 
 end

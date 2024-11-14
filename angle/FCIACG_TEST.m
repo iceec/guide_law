@@ -10,34 +10,32 @@ vm = 3*340;
 vt = 0;
 r = sqrt(10000^2 + 15000^2);
 
-xm = 0;
-ym = 15000;
+xm = -10000;
+ym = 2000;
 
-xt = 10000;
+xt = 0;
 yt = 0;
 q = atan2(yt - ym , xt - xm);
-delt_m = -40 / 180 * pi;
+delt_m = -60 / 180 * pi;
 delt_t = 0 / 180 * pi;
 
 
 n = 1;
-dt = 0.01;
+dt = 0.001;
 
 
-R=zeros(1,10000);
-XM=zeros(1,10000);
-YM = zeros(1,10000);
+R=zeros(1,100000);
+XM=zeros(1,100000);
+YM = zeros(1,100000);
 
 
-YITA_M = zeros(1,10000);
-AM = zeros(1,10000);
-DELT_M = zeros(1,1000);
-S = zeros(1,10000);
+YITA_M = zeros(1,100000);
+AM = zeros(1,100000);
+DELT_M = zeros(1,10000);
+S = zeros(1,100000);
 
 
-while r> 1 && n <= 10000
-
-
+while r> 1 && n <= 100000
 
 
 [dr,dq,ddelt_m,ddelt_t,am,s] = dynamic(vm,vt,delt_m,delt_t,r,q);
@@ -49,7 +47,7 @@ YM(n) = ym;
 
 YITA_M(n) = (q - delt_m) / pi * 180;
 
-AM(n) = am / 9.81;
+AM(n) = am;
 DELT_M(n) = delt_m * 180 / pi;
 S(n) = s;
 
@@ -85,7 +83,7 @@ plot(xt,yt,'*');
 
 figure(2);
 
-plot(DELT_M(1:n-1),'LineWidth',2);
+plot(AM(1:n-1),'LineWidth',2);
 
 figure(3);
 

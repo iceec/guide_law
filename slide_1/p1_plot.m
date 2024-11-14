@@ -37,9 +37,9 @@ T4 = f4.THETA;
 
 
 % figure(1);
-% plot(X1(1:N1),Y1(1:N1),'-k',X2(1:N2),Y2(1:N2),'--k',X3(1:N3),Y3(1:N3),'-.k',X4(1:N4),Y4(1:N4),':k','LineWidth',0.75);
+% plot(X1(1:N1),Y1(1:N1),'-r',X2(1:N2),Y2(1:N2),'--g',X3(1:N3),Y3(1:N3),'-.b',X4(1:N4),Y4(1:N4),':k','LineWidth',0.75);
 % hold on
-% plot(0,0,'o','MarkerFaceColor','r');
+% plot(0,0,'o','MarkerFaceColor','k');
 % xlabel('X/M');
 % ylabel('Y/M');
 % legend({'t_{d}=50s','t_{d}=60s','t_{d}=70s','t_{d}=80s','target'},'Location','best');
@@ -47,18 +47,18 @@ T4 = f4.THETA;
 
 % figure(2);
 % 
-% plot(time(1:N1-2),A1(1:N1-2),'-k',time(1:N2-2),A2(1:N2-2),'--k',time(1:N3-2),A3(1:N3-2),'-.k',time(1:N4-2),A4(1:N4-2),':k','LineWidth',0.75);
+% plot(time(1:N1-2),A1(1:N1-2),'-r',time(1:N2-2),A2(1:N2-2),'--g',time(1:N3-2),A3(1:N3-2),'-.b',time(1:N4-2),A4(1:N4-2),':k','LineWidth',0.75);
 % 
 %  xlabel('t/s');
 %  ylabel('a_{m}/(m\cdot s^{-2})');
 % legend({'t_{d}=50s','t_{d}=60s','t_{d}=70s','t_{d}=80s','target'},'Location','best');
 
 
-
-figure(3);
-
-plot(time(1:N1),T1(1:N1),'-k',time(1:N2),T2(1:N2),'--k',time(1:N3),T3(1:N3),'-.k',time(1:N4),T4(1:N4),':k','LineWidth',0.75);
-
-xlabel('t/s');
-ylabel('\theta_{imp}/(\circ)');
-legend({'t_{d}=50s','t_{d}=60s','t_{d}=70s','t_{d}=80s'},'Location','best');
+% 
+% figure(3);
+% 
+% plot(time(1:N1),T1(1:N1),'-r',time(1:N2),T2(1:N2),'--g',time(1:N3),T3(1:N3),'-.b',time(1:N4),T4(1:N4),':k','LineWidth',0.75);
+% 
+% xlabel('t/s');
+% ylabel('\theta_{imp}/(\circ)');
+% legend({'t_{d}=50s','t_{d}=60s','t_{d}=70s','t_{d}=80s'},'Location','best');
