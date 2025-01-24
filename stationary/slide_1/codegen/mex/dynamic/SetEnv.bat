@@ -1,0 +1,4 @@
+set PATH=C:\msys64\mingw64\bin;D:\MatLab\R2022a\extern\include\win64;D:\MatLab\R2022a\extern\include;D:\MatLab\R2022a\simulink\include;D:\MatLab\R2022a\lib\win64;%MATLAB_BIN%;%PATH%
+set INCLUDE=C:\msys64\mingw64\include;C:\msys64\mingw64\lib\gcc\x86_64-w64-mingw32\13.2.0\include\c++;C:\msys64\mingw64\lib\gcc\x86_64-w64-mingw32\13.2.0\include;C:\msys64\mingw64\lib\gcc\x86_64-w64-mingw32\13.2.0\include\c++\x86_64-w64-mingw32;C:\msys64\mingw64\lib\gcc\x86_64-w64-mingw32\13.2.0\include\c++\backward;C:\msys64\mingw64\x86_64-w64-mingw32\include;%INCLUDE%
+set LIB=C:\msys64\mingw64\lib;;%LIB%
+set LIBPATH=D:\MatLab\R2022a\extern\lib\win64;%LIBPATH%

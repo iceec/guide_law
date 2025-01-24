@@ -1,0 +1,74 @@
+[
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   dynamic_data.cpp -o build/win64/dynamic_data.o",
+    "file": "dynamic_data.cpp",
+    "output": "build/win64/dynamic_data.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   rt_nonfinite.cpp -o build/win64/rt_nonfinite.o",
+    "file": "rt_nonfinite.cpp",
+    "output": "build/win64/rt_nonfinite.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   dynamic_initialize.cpp -o build/win64/dynamic_initialize.o",
+    "file": "dynamic_initialize.cpp",
+    "output": "build/win64/dynamic_initialize.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   dynamic_terminate.cpp -o build/win64/dynamic_terminate.o",
+    "file": "dynamic_terminate.cpp",
+    "output": "build/win64/dynamic_terminate.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   dynamic.cpp -o build/win64/dynamic.o",
+    "file": "dynamic.cpp",
+    "output": "build/win64/dynamic.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   W.cpp -o build/win64/W.o",
+    "file": "W.cpp",
+    "output": "build/win64/W.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   rand.cpp -o build/win64/rand.o",
+    "file": "rand.cpp",
+    "output": "build/win64/rand.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   interface/_coder_dynamic_api.cpp -o build/win64/_coder_dynamic_api.o",
+    "file": "interface/_coder_dynamic_api.cpp",
+    "output": "build/win64/_coder_dynamic_api.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   interface/_coder_dynamic_mex.cpp -o build/win64/_coder_dynamic_mex.o",
+    "file": "interface/_coder_dynamic_mex.cpp",
+    "output": "build/win64/_coder_dynamic_mex.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   nthroot.cpp -o build/win64/nthroot.o",
+    "file": "nthroot.cpp",
+    "output": "build/win64/nthroot.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   interface/_coder_dynamic_info.cpp -o build/win64/_coder_dynamic_info.o",
+    "file": "interface/_coder_dynamic_info.cpp",
+    "output": "build/win64/_coder_dynamic_info.o"
+  },
+  {
+    "directory": "D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic",
+    "command": "C:\\msys64\\mingw64\\bin\\g++ -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\" -I \"D:\\MatLab\\MissleGuide\\stationary\\slide_1\\codegen\\mex\\dynamic\\interface\" -I \"D:\\MatLab\\R2022a\\extern\\include\" -I \".\" -DMODEL=dynamic_mex -D__USE_MINGW_ANSI_STDIO=1 -DMW_NEEDS_VERSION_H   D:/MatLab/R2022a/extern/version/cpp_mexapi_version.cpp -o build/win64/cpp_mexapi_version.o",
+    "file": "D:/MatLab/R2022a/extern/version/cpp_mexapi_version.cpp",
+    "output": "build/win64/cpp_mexapi_version.o"
+  }
+]

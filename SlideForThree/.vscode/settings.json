@@ -1,0 +1,14 @@
+{
+    "matlab.mlintpath": "D:\\MatLab\\R2022a\\bin\\win64\\mlint.exe",
+    "matlab.matlabpath": "D:\\MatLab\\R2022a\\bin\\win64\\MATLAB.exe",
+    "matlab.linterEncoding": "gb2312",
+
+    "files.associations": {
+        "*.m": "matlab",
+    },
+    "code-runner.runInTerminal": true,
+    "[matlab]": {
+        "files.encoding": "gb2312",
+    },
+    "files.autoGuessEncoding": true,
+}
