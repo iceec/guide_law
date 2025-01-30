@@ -37,7 +37,7 @@ global dt;
 
 e = z1 - dq;
 
-dz1 = z2 - 2 * dr * dq / r - am * cos(ym) / r - k11 * sig(e, s111, s112) - k12 * sig(e, s121, s122);
+dz1 = z2 / r - 2 * dr * dq / r - am * cos(ym) / r - k11 * sig(e, s111, s112) - k12 * sig(e, s121, s122);
 
 dz2 = z3 - k21 * sig(e, s211, s212) - k22 * sig(e, s221, s222);
 

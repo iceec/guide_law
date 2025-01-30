@@ -22,6 +22,10 @@ global z2;
 global z3;
 global am;
 
+global gama;
+
+gama = 8;
+
 
 myt = mth - q;
 tyt = tth - q;
@@ -31,8 +35,8 @@ dq = (vt * sin(tyt) - vm * sin(myt)) / r;
 dtth = at/vt;
 
 
-%vr = dr;
-%vq = r * dq;
+vr = dr;
+vq = r * dq;
 
 %确定包络线的当前值
 if (t < ts)
@@ -42,18 +46,17 @@ else
 end
 
 %求解当前tgo 和误差 e F B
-%v_2 = vm^2 - vt^2;
-%tgo = r * (vr + 2 * vm * cos(myt) - vq * tan(myt)) / v_2;
-tgo = -r / dr;
+v_2 = vm^2 - vt^2;
+tgo = r * (vr + 2 * vm * cos(myt) - vq * tan(myt)) / v_2;
+%tgo = -r / dr;
 e = t + tgo - td;
 
-B = r*sin(myt)/(dr^2);
-F = -1 + (vt*sin(tyt)*dq-vm*sin(myt)*dq)*r/(dr^2);
-D = eso(r,dr,myt,tyt,dq,am);
+%B = r*sin(myt)/(dr^2);
+%F = -1 + (vt*sin(tyt)*dq-vm*sin(myt)*dq)*r/(dr^2);
 
 
-%F = vq^2 / (v_2 * cos(myt)^2) - 1;
-%B = -r * vq / (vm * v_2 * cos(myt)^2);
+F = vq^2 / (v_2 * cos(myt)^2) - 1;
+B = -r * vq / (vm * v_2 * cos(myt)^2);
 
 % 求解得到yimo
 tmp = (1 + e/w)/(1 - e/w);
@@ -67,10 +70,11 @@ if fai < 0
 end
 alp = -dw / w;
 % 求解得到 am
-am = 1 / B * (-l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 - d * tanh(yimo*fai/tao));  % 
+s = yimo * fai;
+am = 1 / B * (-l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 - d * tanh(yimo*fai/tao) );  % d * gama * sgmf(s) 
 %dmth 和 de
 dmth = am / vm;
 dd = -k1 * beta * f(d, p1, p2) - k2 * beta * f(d, q1, q2) + beta * yimo * fai * tanh(yimo*fai/tao);
-
+%%dd = gama*abs(s);
 
 end

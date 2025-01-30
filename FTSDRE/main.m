@@ -24,12 +24,12 @@ xt = 5000 * sqrt(3);
 yt = 5000;
 
 Vm = 500;
-Vt = 250;
-impact_angle = 90 * pi / 180;
+Vt = 400;
+impact_angle =  90* pi / 180;
 yimo = 0.00001;
 beta = 0.0011;
 alpha = 0.0015;
-At = 20;
+
 R = 1;
 
 Ca = [1, 0, 0; ...
@@ -49,10 +49,12 @@ G = [1, 1];
 Am_max = 400;
 S_back = 0;
 
+At = 40;
+
 r = 10000;
 q = 30 / 180 * pi;
 
-theta_m = 30 / 180 * pi;
+theta_m = 60 / 180 * pi;
 theta_t = 90 / 180 * pi;
 z = 1;
 w = 0;
@@ -74,6 +76,8 @@ YT = zeros(1, N);
 
 interval = 0.5;
 while r > 0 && n < N
+
+    At = 40;
 
     if (tf - t < interval)
         tf = tf + interval;

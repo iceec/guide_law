@@ -39,7 +39,7 @@ tth = 120 / 180 * pi;
 
 at = 3 * 9.81;
 
-td = 70;
+td = 60;
 t = 0;
 dt = 0.001;
 n = 1;
@@ -72,7 +72,7 @@ z1 = dq;
 z2 = 0;
 z3 = 0;
 
-d = 0;
+d = 0.5;
 % 求解 w0 需要 e0 那么先求tgo0
 w0 = SloveW0(vm, vt, r, q, mth, tth);
 
@@ -103,6 +103,4 @@ while r > 0 && n <= N
     disp(r);
 end
 
-figure(1);
 
-plot(Z2(1:n-1), 'LineWidth', 2);
