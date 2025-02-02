@@ -29,6 +29,11 @@ global gama;
 global s;
 
 
+% global P1;
+% global P2;
+% global beta;
+
+
 
 
 
@@ -51,6 +56,9 @@ x2 = dq - dqf;
 
 S = x2 + x1 * n / tgo + yimo;
 
+%S = x1 + beta * MyExp(x2,P1,P2);
+s =S;
+
 
 
 z2 = eso(r,dr,delt_m,delt_t,q,dq,am);
@@ -58,13 +66,20 @@ z2 = eso(r,dr,delt_m,delt_t,q,dq,am);
 %求解am
 p1 = ((m + n) * x2) / tgo;
 p2 = (m + 1) * n * x1 / (tgo^2);
+
 p3 = -2 * dr * dq / r;
 p4 = k2*S;
 p5 = k1 *sig(S,y1,y2);
-p6 = d * gama * sgmf(S);
+p6 = 0.2 * sgmf(S);  %d * gama * sgmf(S);
 p7 = z2/r;
 
-
+% a1 = r / cos(yita_m) *(p3 + p7);
+% 
+% T = r / cos(yita_m) * (beta * P1 / P2) * MyExp(x2,P2 - P1,P2);
+% 
+% a2 = T * (x2 + p4 + p5 + p6);
+% 
+% am = a1 + a2;
 
 
 am = (r / cos(yita_m)) * (p1 + p2 + p3 + p4 + p5 + p6 + p7);

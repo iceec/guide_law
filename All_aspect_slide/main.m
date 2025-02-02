@@ -34,13 +34,21 @@ global gama;
 
 global s;
 
+global P1;
+global P2;
+global beta;
+
+P1 = 9;
+P2 = 7;
+beta = 5;
+
 
 k1 = 6;
 k2 = 2;
 y1 = 9;
 y2 = 10;
-gama = 1.1;
-d = 2;
+gama = 2;
+d = 0.02;
 
 
 Q_elem = [10^5, 10^5];
@@ -60,10 +68,13 @@ delt_m = 60 / 180 * pi;
 delt_t = 0 / 180 * pi;
 
 t = 0;
-at = 30 * sin(t * pi /4);
+if t < 10
+    at = -30;
+else
+    at = 30;
+end
+
 am_max = 200;
-
-
 
 
 theta_d = 30 / 180 * pi;
@@ -109,13 +120,19 @@ AM = zeros(1, N);
 Z2 = zeros(1, N);
 A2 = zeros(1, N);
 D = zeros(1, N);
-S = zeros(1,N);
+S = zeros(1, N);
 step = 1;
 
 
 while r > 1 && step < N
 
-    at = 30 * sin(t * pi /4);
+
+    if t < 10
+        at = -30;
+    else
+        at = 30;
+    end
+
     [dr, dq, ddelt_m, ddelt_t, dyimo] = Dynamic(delt_m, delt_t);
 
     R(step) = r;
@@ -165,10 +182,10 @@ figure(4);
 plot(D(1:step-1), 'LineWidth', 2);
 
 figure(5);
-plot(Z2(1:step-1),'LineWidth',2);
+plot(Z2(1:step-1), 'LineWidth', 2);
 
 figure(6);
-plot(S(1:step-1),'LineWidth',2);
+plot(S(1:step-1), 'LineWidth', 2);
 
 
 save("./Data/180.mat", "XM", "YM", "XT", "YT", "AM", "IMPACT", "step");
