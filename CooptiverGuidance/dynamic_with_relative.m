@@ -52,14 +52,22 @@ at_r_z = zr_info(i, 2);
 at_theta_z = ztheta_info(i, 2);
 at_yita_z = zyita_info(i, 2);
 
-r_1 = r * dq_theta^2;
-r_2 = r * dq_yita^2 * cos(q_theta)^2;
-r_3 = U(i);
-r_4 = dr^2 / r;
+x1 = r;
+x2 = dr;
+A = x1^2 * dq_theta^2/(x2^2) + x1^2*dq_yita^2*cos(q_theta)^2/(x2^2);
+B = -x1/(x2^2);
+d = x1/(x2^2) * at_r_z;
 
-r_5 = r_3 * r_4;
-
-a_r = r_1 + r_2 + r_5 + at_r_z;
+ar_tmp = impact_time_ar(i);
+% r_1 = r * dq_theta^2;
+% r_2 = r * dq_yita^2 * cos(q_theta)^2;
+% r_3 = U(i);
+% r_4 = dr^2 / r;
+% 
+% r_5 = r_3 * r_4;
+% 
+% a_r = r_1 + r_2 + r_5 + at_r_z;
+a_r = 1/B*(-A -d + ar_tmp);
 
 x1_theta = q_theta - q_theta_d;
 x2_theta = dq_theta;

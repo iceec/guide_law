@@ -11,6 +11,8 @@ global z1;
 global z2;
 
 
+
+
 global m;
 global n;
 global theta_d;
@@ -29,26 +31,16 @@ global k1;
 global k2;
 global y1;
 global y2;
-global d;
-global gama;
 
 global s;
 
-global P1;
-global P2;
-global beta;
-
-P1 = 9;
-P2 = 7;
-beta = 5;
 
 
 k1 = 6;
 k2 = 2;
 y1 = 9;
 y2 = 10;
-gama = 2;
-d = 0.02;
+
 
 
 Q_elem = [10^5, 10^5];
@@ -68,16 +60,14 @@ delt_m = 60 / 180 * pi;
 delt_t = 0 / 180 * pi;
 
 t = 0;
-if t < 10
-    at = -30;
-else
-    at = 30;
-end
+at = 30 *sin(pi/4 *t);
+
+
 
 am_max = 200;
 
 
-theta_d = 30 / 180 * pi;
+theta_d = 60 / 180 * pi;
 
 
 r = sqrt((xm - xt)^2+(ym - yt)^2);
@@ -101,9 +91,10 @@ K1 = 0.05;
 %sgmf参数
 seta = 0.8;
 
-
 z1 = dq;
 z2 = 0;
+
+
 
 
 dt = 0.001;
@@ -121,17 +112,14 @@ Z2 = zeros(1, N);
 A2 = zeros(1, N);
 D = zeros(1, N);
 S = zeros(1, N);
+DQ = zeros(1,N);
 step = 1;
 
 
 while r > 1 && step < N
 
 
-    if t < 10
-        at = -30;
-    else
-        at = 30;
-    end
+   at = 30 *sin(pi/4 *t);
 
     [dr, dq, ddelt_m, ddelt_t, dyimo] = Dynamic(delt_m, delt_t);
 
@@ -142,8 +130,8 @@ while r > 1 && step < N
     YT(step) = yt;
     AM(step) = am;
     Z2(step) = z2;
-    A2(step) = cos(delt_t-q) * at;
-    D(step) = d;
+    A2(step) = at/vt;
+    DQ(step) = dq;
     S(step) = s;
     IMPACT(step) = (delt_t - delt_m) / pi * 180;
 
@@ -179,10 +167,10 @@ figure(3);
 plot(IMPACT(1:step-1), 'LineWidth', 2);
 
 figure(4);
-plot(D(1:step-1), 'LineWidth', 2);
+plot(DQ(1:step-1), 'LineWidth', 2);
 
 figure(5);
-plot(Z2(1:step-1), 'LineWidth', 2);
+plot(Time(1:step-1),DQ(1:step-1),Time(1:step-1),A2(1:step-1), 'LineWidth', 2);
 
 figure(6);
 plot(S(1:step-1), 'LineWidth', 2);
