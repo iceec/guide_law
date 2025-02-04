@@ -19,11 +19,14 @@ global n1;
 global n2;
 
 
-
-
+global z1;
+global z2;
+global z3;
+global dt;
 global am;
-global am_max;
 
+global e;
+global w;
 
 
 xm = 0;
@@ -38,13 +41,14 @@ mth = 20 / 180 * pi;
 tth = 120 / 180 * pi;
 
 at = 3 * 9.81;
-am_max = 250;
 
-td = 80;
+td = 70;
 t = 0;
 dt = 0.001;
 n = 1;
 N = 1000 * 100;
+
+Time = 0 : 0.001 :75;
 
 k = 3;
 n1 = 3;
@@ -69,7 +73,6 @@ myt = mth - q;
 tyt = tth - q;
 
 dq = (vt * sin(tyt) - vm * sin(myt)) / r;
-
 z1 = dq;
 z2 = 0;
 z3 = 0;
@@ -82,14 +85,15 @@ w0 = SloveW0(vm, vt, r, q, mth, tth);
 AM = zeros(1, N);
 am = 0;
 Z2 = zeros(1, N);
-TGO = zeros(1,N);
+E = zeros(1,N);
+W = zeros(1,N);
 
 while r > 0 && n <= N
-    [dr, dq, dmth, dtth, dd,tgo] = DynamicOnlyT(vm, vt, r, q, mth, tth, d);
+    [dr, dq, dmth, dtth, dd] = Dynamic(vm, vt, r, q, mth, tth, d);
 
     AM(n) = am;
-    Z2(n) = z2 * (r / cos(tth-q));
-    TGO(n) = tgo;
+    W(n) = w;
+    E(n) = e;
 
     r = r + dr * dt;
     q = q + dq * dt;
@@ -106,7 +110,6 @@ while r > 0 && n <= N
     n = n + 1;
     disp(r);
 end
-
-plot(AM(1:n-1),'LineWidth',2);
-
+figure(1);
+plot(Time(1:n-1),E(1:n-1),'LineWidth',2);
 

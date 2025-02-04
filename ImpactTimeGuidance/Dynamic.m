@@ -1,4 +1,4 @@
-function [dr, dq, dmth, dtth, dd,tgo] = Dynamic(vm, vt, r, q, mth, tth, d)
+function [dr, dq, dmth, dtth, dd] = Dynamic(vm, vt, r, q, mth, tth, d)
 
 global w0;
 global woo;
@@ -17,14 +17,14 @@ global k1;
 global k2;
 global beta;
 
-global z1;
-global z2;
-global z3;
+
 global am;
 
-global gama;
 
-gama = 8;
+global e;
+global w;
+
+
 
 
 myt = mth - q;
@@ -70,13 +70,11 @@ if fai < 0
 end
 alp = -dw / w;
 % 求解得到 am
-
-dis = ObserveD(r,dr,myt,tyt,am);
-d_at = -dis * r^2 * (tan(myt) + tan(tyt)) / v_2;
-am = 1 / B * (-l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 - d * tanh(yimo*fai/tao) );  % d * gama * sgmf(s) 
+s = yimo * fai;
+am = 1 / B * (-l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 -d*sign(s));  % d * gama * sgmf(s)  d * tanh(yimo*fai/tao)
 %dmth 和 de
 dmth = am / vm;
-dd = -k1 * beta * f(d, p1, p2) - k2 * beta * f(d, q1, q2) + beta * yimo * fai * tanh(yimo*fai/tao);
+dd = -k1 * beta * f(d, p1, p2) - k2 * beta * f(d, q1, q2) + beta *abs(s); % * yimo * fai * tanh(yimo*fai/tao)
 %%dd = gama*abs(s);
 
 end
