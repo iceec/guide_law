@@ -60,7 +60,7 @@ delt_m = 60 / 180 * pi;
 delt_t = 0 / 180 * pi;
 
 t = 0;
-at = 30 *sin(pi/4 *t);
+at = 30*sin(pi/4*t);
 
 
 
@@ -76,10 +76,10 @@ q = atan2(yt-ym, xt-xm);
 %求解初始的yimo
 dq = (vt * sin(delt_t-q) - vm * sin(delt_m-q)) / r;
 dr = vt * cos(delt_t-q) - vm * cos(delt_m-q);
-qf = delt_t - atan2(sin(theta_d), cos(theta_d)-vt/vm);
+qf = theta_d;
 
 x1 = q - qf;
-x2 = dq - at / vt;
+x2 = dq;
 tgo = esttgo(dr);
 
 yimo = -x2 - n * x1 / tgo;
@@ -119,7 +119,7 @@ step = 1;
 while r > 1 && step < N
 
 
-   at = 30 *sin(pi/4 *t);
+   at = 30*sin(pi/4*t);
 
     [dr, dq, ddelt_m, ddelt_t, dyimo] = Dynamic(delt_m, delt_t);
 

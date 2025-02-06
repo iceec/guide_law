@@ -60,12 +60,12 @@ ddelt_t = at / vt;
 %得到tgo
 tgo = esttgo(dr);
 
-qf = delt_t - atan2(sin(theta_d), cos(theta_d)-vt/vm);
-dqf = at / vt ;
+qf = theta_d;
+dqf = 0 ;
 
 %得到滑模面和滑模变量
 x1 = q - qf;
-x2 = dq - dqf;
+x2 = dq-dqf;
 
 S = x2 + x1 * n / tgo + yimo;
 %S = x1 + beta * MyExp(x2,P1,P2);
@@ -86,7 +86,7 @@ p3 = -2 * dr * dq / r;
 % p5 = k1 *sig(S,y1,y2);
 p4 = m1 *sig(S,w11,w12);
 p5 = m2 *sig(S,w21,w22);
-p6 = 0.2 * sgmf(S);  %d * gama * sgmf(S);
+p6 = 0;%0.2 * sgmf(S);  %d * gama * sgmf(S);
 p7 = z2/r;
 am = (r / cos(yita_m)) * (p1 + p2 + p3 + p4 + p5 + p6 + p7);
 

@@ -3,13 +3,14 @@
 % eso的形式要满足 z2 是独立的
 xm = 0;
 ym = 0;
-xt = 8000;
-yt = 0;
-vm = 1000;
-vt = 500;
+xt = 2500*sqrt(3);
+yt = 2500;
+vm = 500;
+vt = 250;
+t = 0;
 
-delt_t = 0 / 180 * pi;
-delt_m = 20 / 180 * pi;
+delt_t = 60 / 180 * pi;
+delt_m = 0 / 180 * pi;
 
 r = sqrt((xm - xt) ^ 2 + (ym - yt) ^ 2);
 q = atan2(yt - ym, xt - xm);
@@ -46,14 +47,14 @@ XM(n) = xm;
 YM(n) = ym;
 XT(n) = xt;
 YT(n) = yt;
-[ dr, dq, ddelt_m, ddelt_t, am,yita_r,err] = dynamic(vm, vt, r, q, delt_m, delt_t);
+[ dr, dq, ddelt_m, ddelt_t, am,yita_r,err] = dynamic(vm, vt, r, q, delt_m, delt_t,t);
 
 
 ERR(n) = err / pi * 180;
 YITA_R(n) = yita_r / pi * 180;
 
 
-AM(n) = am / 9.81;
+AM(n) = am;
 
 J =  J + abs(am);
 
@@ -69,6 +70,7 @@ ym = ym + vm * sin(delt_m) * h;
 
 xt = xt + vt * cos(delt_t) * h;
 yt = yt + vt * sin(delt_t) * h;
+t = t + h;
 
 n = n + 1;
 

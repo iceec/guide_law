@@ -19,8 +19,7 @@ global Hf;
 global Q;
 global J;
 
-
-v = Vt / Vm;
+global z2;
 
 
 yita_m = theta_m - q;
@@ -34,8 +33,8 @@ dtheta_t = At / Vt; %先打击静止目标
 
 %建立方程
 
-qd = theta_t - atan2(sin(impact_angle), cos(impact_angle)-v);
-dqd = dtheta_t;
+qd = impact_angle; %theta_t - atan2(sin(impact_angle), cos(impact_angle)-v);
+dqd = 0;
 
 
 x1 = q;
@@ -50,7 +49,7 @@ Aa = [0, 1, 0; ...
     0, -2 * dr / r, -(2 * dr * xd2 / r + dxd2) / z; ...
     0, 0, -yimo];
 
-Ba = [0; -cos(yita_m) / r; 0];
+Ba = [0; dr / (r * Vm); 0]; %[0; -cos(yita_m) / r; 0];
 
 ha = [0; cos(yita_t) / r; 0] * At;
 
@@ -73,6 +72,10 @@ Pe = expm(Tao') * Ltf / (eye(3) - Hss * Ltf + expm(Tao) * Hss * expm(Tao') * Ltf
 P = Pss + Pe;
 Am_nom = -1 / R * Ba' * P * ea;
 
+ck = cos(yita_t)/cos(yita_m);
+cv = Vt/Vm;
+Ac = ck*At + (1-ck*cv)*Am_nom; % z2/cos(yita_m)
+
 %求解S S_back起始是3*1的0
 S_back = S_back + (Aa - Ba / R * Ba' * P) * ea * dt;
 
@@ -84,9 +87,9 @@ Am_disc = 1 / (G * Ca * Ba) * (-alpha * sqrt(abs(S)) * sign(S) + w); % 取了0.5
 dw = -beta * sign(S);
 dz = -yimo * z;
 
-Am = Am_nom + Am_disc;
+Am = Ac;
 
-if (Am > Am_max)
+if (abs(Am) > Am_max)
     Am = Am_max * sign(Am);
 end
 
@@ -96,5 +99,6 @@ eya = [x1 - xd1; x2 - xd2;];
 u = Am;
 
 J = J + (eya' * Q * eya + u' * R * u) * dt * 1 / 2;
+eso(r,dr,theta_m,theta_t,q,dq,Am);
 
 end

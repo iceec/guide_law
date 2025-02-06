@@ -1,17 +1,20 @@
 
-function [dr,dq,ddelt_m,ddelt_t,am,yita_r,err] = dynamic(vm,vt,r,q,delt_m,delt_t)
+function [dr,dq,ddelt_m,ddelt_t,am,yita_r,err] = dynamic(vm,vt,r,q,delt_m,delt_t,t)
 
 yita_m = delt_m - q;
 yita_t = delt_t - q;
 K = vt/vm;
-theta_d = -45/180 * pi;
+theta_d = 60/180 * pi;
 
-at = -3 * 9.81; %这个值 可以考虑以后从测量获取过来
+at = 30; %这个值 可以考虑以后从测量获取过来
 
 
 
 N=3;
 M=1;
+
+
+
 
 
 
@@ -35,6 +38,9 @@ tgo = r / vc;
 delt_d = delt_t + at * tgo/vt - atan2(sin(theta_d),cos(theta_d) - K);
 
 err = delt_d - delt_rf;  
+
+
+
 
 a1  = N * vr * dq + M * (N-1)* vr * dr * err / r;
 

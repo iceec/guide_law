@@ -24,6 +24,7 @@ global z2;
 global z3;
 global dt;
 global am;
+global am_max;
 
 global e;
 global w;
@@ -48,23 +49,24 @@ dt = 0.001;
 n = 1;
 N = 1000 * 100;
 
-Time = 0 : 0.001 :75;
+Time = 0 : 0.001 :100;
 
-k = 3;
+k = 6;
 n1 = 3;
 n2 = 2;
-ts = 8;
+ts = 6;
 woo = 1;
 l1 = 3;
 l2 = 2;
-p1 = 4;
+p1 = 5;
 p2 = 5;
-q1 = 15;
-q2 = 11;
+q1 = 11;
+q2 = 15;
 k1 = 0.2;
 k2 = 0.1;
 beta = 0.5;
 tao = 0.03;
+am_max = 200;
 
 
 r = sqrt((xm - xt)^2+(yt - ym)^2);
@@ -88,7 +90,7 @@ Z2 = zeros(1, N);
 E = zeros(1,N);
 W = zeros(1,N);
 
-while r > 0 && n <= N
+while r > 1 && n <= N
     [dr, dq, dmth, dtth, dd] = Dynamic(vm, vt, r, q, mth, tth, d);
 
     AM(n) = am;
@@ -111,5 +113,7 @@ while r > 0 && n <= N
     disp(r);
 end
 figure(1);
-plot(Time(1:n-1),E(1:n-1),'LineWidth',2);
+plot(Time(1:n-1),E(1:n-1),Time(1:n-1),W(1:n-1),'LineWidth',2);
+figure(2);
+plot(AM(1:n-1),'LineWidth',2);
 

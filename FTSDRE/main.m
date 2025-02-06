@@ -17,15 +17,17 @@ global alpha;
 global Hf;
 global Q;
 global J;
+global z1;
+global z2;
 J = 0;
 xm = 0;
 ym = 0;
-xt = 5000 * sqrt(3);
-yt = 5000;
+xt = 2500 * sqrt(3);
+yt = 2500;
 
 Vm = 500;
-Vt = 400;
-impact_angle =  90* pi / 180;
+Vt = 250;
+impact_angle =  60* pi / 180;
 yimo = 0.00001;
 beta = 0.0011;
 alpha = 0.0015;
@@ -46,22 +48,25 @@ Q = diag(Q_elem);
 
 
 G = [1, 1];
-Am_max = 400;
+Am_max = 200;
 S_back = 0;
 
-At = 40;
+At = 10+30*sin(pi/4*t);
 
-r = 10000;
+r = 5000;
 q = 30 / 180 * pi;
 
 theta_m = 60 / 180 * pi;
-theta_t = 90 / 180 * pi;
+theta_t = 0 / 180 * pi;
 z = 1;
 w = 0;
 %求解ea0
 dq = (Vt * sin(theta_t-q) - Vm * sin(theta_m-q)) / r;
-qd = theta_t - atan2(sin(impact_angle), cos(impact_angle)-Vt/Vm);
-dqd = At / Vt;
+qd = impact_angle;
+dqd = 0;
+
+z1 = dq;
+z2 = 0;
 
 ea0 = [q - qd; dq - dqd; z];
 
@@ -77,7 +82,7 @@ YT = zeros(1, N);
 interval = 0.5;
 while r > 0 && n < N
 
-    At = 40;
+    At = 10+30*sin(pi/4*t);
 
     if (tf - t < interval)
         tf = tf + interval;
