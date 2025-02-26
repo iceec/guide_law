@@ -1,4 +1,4 @@
-r1 = 11000;
+r1 = 12000;
 dr1 = -320;
 q_theta_1 = -60 / 180 * pi;
 q_yita_1 = 10 / 180 * pi;
@@ -13,7 +13,7 @@ dq_theta_2 = deg2rad(0.246);
 dq_yita_2 = deg2rad(0.67);
 
 
-r3 = 11000;
+r3 = 13000;
 dr3 = -380;
 q_theta_3 = -30 / 180 * pi;
 q_yita_3 = 40 / 180 * pi;
@@ -71,6 +71,9 @@ global atx;
 global aty;
 global atz;
 
+global R_ERROR;
+global n;
+
 
 global p11;
 global p12;
@@ -100,6 +103,7 @@ zt = 0;
 vtx = 0;
 vty = 0;
 vtz = 0;
+
 
 t = 0;
 dt = 0.001;
@@ -151,12 +155,15 @@ InitZInfo(r4, dr4, dq_theta_4, dq_yita_4, q_theta_4, 4);
 
 
 TPOS = zeros(3, N);
-
 M1POS = zeros(3, N);
-
+M2POS = zeros(3, N);
+M3POS = zeros(3, N);
+M4POS = zeros(3, N);
 AR = zeros(4, N);
 ATHETA = zeros(4, N);
 AYITA = zeros(4, N);
+QTHETA = zeros(4, N);
+R_ERROR = zeros(4, N);
 
 p11 = 3;
 p12 = 20;
@@ -176,10 +183,16 @@ kp2 = 0;
 
 while r1 > 1 && r2 > 1 && r3 > 1 && r4 > 1 && n < N
 
-    atx = 30 * cos(0.8*t);
-    aty = 30 * sin(0.8*t+pi/4);
-    atz = 5 * cos(0.8*t+pi/2);
-
+    %
+    %         atx = 30;
+    %         aty = 10;
+    %         atz = 20;
+    atx = 30 * cos(pi/4*t);
+    aty = 15 * sin(pi/4*t);
+    atz = 10 + 5 * cos(pi/4*t);
+    %     atx = 0;
+    %     aty = 0;
+    %     atz = 0;
 
     [ddr1, ddq_theta_1, ddq_yita_1] = dynamic_with_relative(r1, dr1, q_theta_1, q_yita_1, dq_theta_1, dq_yita_1, 1);
 
@@ -237,11 +250,30 @@ while r1 > 1 && r2 > 1 && r3 > 1 && r4 > 1 && n < N
     TPOS(3, n) = zt;
 
 
-    [xm, ym, zm] = SloveMissPos(r1, q_theta_1, q_yita_1);
+    [xm1, ym1, zm1] = SloveMissPos(r1, q_theta_1, q_yita_1);
+    [xm2, ym2, zm2] = SloveMissPos(r2, q_theta_2, q_yita_2);
+    [xm3, ym3, zm3] = SloveMissPos(r3, q_theta_3, q_yita_3);
+    [xm4, ym4, zm4] = SloveMissPos(r4, q_theta_4, q_yita_4);
 
-    M1POS(1, n) = xm;
-    M1POS(2, n) = ym;
-    M1POS(3, n) = zm;
+
+    M1POS(1, n) = xm1;
+    M1POS(2, n) = ym1;
+    M1POS(3, n) = zm1;
+
+    M2POS(1, n) = xm2;
+    M2POS(2, n) = ym2;
+    M2POS(3, n) = zm2;
+
+    M3POS(1, n) = xm3;
+    M3POS(2, n) = ym3;
+    M3POS(3, n) = zm3;
+
+    M4POS(1, n) = xm4;
+    M4POS(2, n) = ym4;
+    M4POS(3, n) = zm4;
+
+
+    QTHETA(1, n) = q_theta_1 / pi * 180;
 
 
     t = t + dt;
@@ -258,11 +290,26 @@ figure(2);
 plot(TIME(1:n-1), AYITA(1, 1:n-1), TIME(1:n-1), AYITA(2, 1:n-1), TIME(1:n-1), AYITA(3, 1:n-1), TIME(1:n-1), AYITA(4, 1:n-1), 'LineWidth', 2);
 
 figure(3);
-plot3(TPOS(1,1:n-1),TPOS(2,1:n-1),TPOS(3,1:n-1),'r');
+plot(TIME(1:n-1), AR(1, 1:n-1), TIME(1:n-1), AR(2, 1:n-1), TIME(1:n-1), AR(3, 1:n-1), TIME(1:n-1), AR(4, 1:n-1), 'LineWidth', 2);
 
-hold on;
 
-plot3(M1POS(1,1:n-1),M1POS(2,1:n-1),M1POS(3,1:n-1),'b');
+% figure(3);
+% plot3(TPOS(1, 1:n-1), TPOS(2, 1:n-1), TPOS(3, 1:n-1), 'LineWidth', 2);
+% hold on;
+% plot3(M1POS(1, 1:n-1), M1POS(2, 1:n-1), M1POS(3, 1:n-1),'LineWidth', 2);
+% hold on;
+% plot3(M2POS(1, 1:n-1), M2POS(2, 1:n-1), M2POS(3, 1:n-1),'LineWidth', 2);
+% hold on;
+% plot3(M3POS(1, 1:n-1), M3POS(2, 1:n-1), M3POS(3, 1:n-1),'LineWidth', 2);
+% hold on;
+% plot3(M4POS(1, 1:n-1), M4POS(2, 1:n-1), M4POS(3, 1:n-1),'LineWidth', 2);
+
+
+% figure(4);
+% plot(ATHETA(1, 1:n-1), 'LineWidth', 2);
+%
+% figure(5);
+% plot(R_ERROR(1, 1:n-1), 'LineWidth', 2);
 
 
 disp(rad2deg(q_theta_1));

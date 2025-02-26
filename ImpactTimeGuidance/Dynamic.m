@@ -1,4 +1,4 @@
-function [dr, dq, dmth, dtth, dd] = Dynamic(vm, vt, r, q, mth, tth, d)
+function [dr, dq, dmth, dtth, dd,tgo,dtrue] = Dynamic(vm, vt, r, q, mth, tth, d)
 
 global w0;
 global woo;
@@ -55,9 +55,10 @@ tgo = r * (vr + 2 * vm * cos(myt) - vq * tan(myt)) / v_2;
 %tgo = -r / dr;
 e = t + tgo - td;
 
-F = vq^2 / (v_2 * cos(myt)^2) - 1;
+F = (vr^2 +2*vm*vr*cos(myt)+vq^2+2*vm*vq*sin(myt)+vq^2*sec(myt)^2)/v_2;
 B = -r * vq / (vm * v_2 * cos(myt)^2);
-
+D = -r*sin(myt+tyt)/(v_2*cos(myt))*at;
+dtrue = D*at;
 % 求解得到yimo
 tmp = (1 + e / w) / (1 - e / w);
 yimo = 0.5 * log(tmp);
@@ -71,14 +72,15 @@ end
 alp = -dw / w;
 % 求解得到 am
 s = yimo * fai;
-am = 1 / B * ( -l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 - d * sgmf(s)); % d * gama * sgmf(s)  d * tanh(yimo*fai/tao) 
+
+am = 1 / B * ( -l1 * f(yimo, p1, p2) - l2 * f(yimo, q1, q2) - alp * e - F - 1 - d * sgmf(s)); % d * gama * sgmf(s)    -d * tanh(yimo*fai/tao) 
 
 if abs(am) > am_max
     am = am_max * sign(am);
 end
 %dmth 和 de
 dmth = am / vm;
-dd =  -k1 * beta * f(d, p1, p2) - k2 * beta * f(d, q1, q2) + beta * abs(s); % * yimo * fai * tanh(yimo*fai/tao) 
+dd =  -k1 * beta * f(d, p1, p2) - k2 * beta * f(d, q1, q2) + beta * abs(s); %  yimo * fai * tanh(yimo*fai/tao) 
 %%dd = gama*abs(s);
 
 end

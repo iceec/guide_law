@@ -16,6 +16,10 @@ global zyita_info;
 global dt;
 
 
+global R_ERROR;
+
+global n;
+
 global p11;
 global p12;
 global p21;
@@ -32,10 +36,11 @@ global tc3;
 global tc4;
 global kp2;
 
-global n;
+
 global AR;
 global ATHETA;
 global AYITA;
+
 
 
 [at_r, at_yita, at_theta] = ChangeIneToRos(atx, aty, atz, q_theta, q_yita);
@@ -54,20 +59,20 @@ at_yita_z = zyita_info(i, 2);
 
 x1 = r;
 x2 = dr;
-A = x1^2 * dq_theta^2/(x2^2) + x1^2*dq_yita^2*cos(q_theta)^2/(x2^2);
-B = -x1/(x2^2);
-d = x1/(x2^2) * at_r_z;
+A = x1^2 * dq_theta^2 / (x2^2) + x1^2 * dq_yita^2 * cos(q_theta)^2 / (x2^2);
+B = -x1 / (x2^2);
+d = x1 / (x2^2) * at_r_z;
 
 ar_tmp = impact_time_ar(i);
 % r_1 = r * dq_theta^2;
 % r_2 = r * dq_yita^2 * cos(q_theta)^2;
 % r_3 = U(i);
 % r_4 = dr^2 / r;
-% 
+%
 % r_5 = r_3 * r_4;
-% 
+%
 % a_r = r_1 + r_2 + r_5 + at_r_z;
-a_r = 1/B*(-A -d + ar_tmp);
+a_r = 1 / B * (-A - d + ar_tmp);
 
 x1_theta = q_theta - q_theta_d;
 x2_theta = dq_theta;
@@ -82,9 +87,9 @@ a_theta = r * (F1 + a_theta_part_one + a_theta_part_two) + at_theta_z;
 
 x1_yita = q_yita - q_yita_d;
 x2_yita = dq_yita;
-s_yita_india = SloveSIndia(x1_yita,x2_yita,p31,p32,tc3);
-a_yita_part_one = SInidaDotPart(x1_yita,x2_yita,p31,p32,tc3);
-a_yita_part_two = APartTwo(s_yita_india,p41,p42,tc4,kp2);
+s_yita_india = SloveSIndia(x1_yita, x2_yita, p31, p32, tc3);
+a_yita_part_one = SInidaDotPart(x1_yita, x2_yita, p31, p32, tc3);
+a_yita_part_two = APartTwo(s_yita_india, p41, p42, tc4, kp2);
 
 a_yita = -r * cos(q_theta) * (F2 + a_yita_part_one + a_yita_part_two) + at_yita_z;
 %s_yita = SloveS(x1_yita, x2_yita);
@@ -92,6 +97,7 @@ a_yita = -r * cos(q_theta) * (F2 + a_yita_part_one + a_yita_part_two) + at_yita_
 
 a_theta = Ampify(a_theta);
 a_yita = Ampify(a_yita);
+a_r = Ampify(a_r);
 
 ddr = r * dq_theta^2 + r * dq_yita^2 * cos(q_theta)^2 - a_r + at_r;
 ddq_theta = (-2 * dr / r) * dq_theta - dq_yita^2 * sin(q_theta) * cos(q_theta) - a_theta / r + at_theta / r;
@@ -117,10 +123,10 @@ zyita_info(i, 1) = zyita_info(i, 1) + dz_yita1 * dt;
 zyita_info(i, 2) = zyita_info(i, 2) + dz_yita2 * dt;
 zyita_info(i, 3) = zyita_info(i, 3) + dz_yita3 * dt;
 
-AR(i,n) = a_r;
-ATHETA(i,n) = a_theta;
-AYITA(i,n) = a_yita;
+AR(i, n) = a_r;
+ATHETA(i, n) = a_theta;
+AYITA(i, n) = a_yita;
 
-
+R_ERROR(i, n) = at_r;
 
 end

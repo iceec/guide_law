@@ -22,20 +22,20 @@ global z2;
 J = 0;
 xm = 0;
 ym = 0;
-xt = 2500 * sqrt(3);
-yt = 2500;
+xt = 5000 * sqrt(3);
+yt = 5000;
 
-Vm = 500;
-Vt = 250;
-impact_angle =  60* pi / 180;
+Vm = 600;
+Vt = 300;
+impact_angle = 45 * pi / 180;
 yimo = 0.00001;
 beta = 0.0011;
 alpha = 0.0015;
 
 R = 1;
 
-Ca = [1, 0, 0; ...
-    0, 1, 0];
+Ca = [1, 0; ...
+    0, 1];
 tf = 20;
 t = 0;
 dt = 0.001;
@@ -51,12 +51,12 @@ G = [1, 1];
 Am_max = 200;
 S_back = 0;
 
-At = 10+30*sin(pi/4*t);
+At = 60 * cos(pi/4*t);
 
-r = 5000;
+r = 10000;
 q = 30 / 180 * pi;
 
-theta_m = 60 / 180 * pi;
+theta_m = 30 / 180 * pi;
 theta_t = 0 / 180 * pi;
 z = 1;
 w = 0;
@@ -71,31 +71,30 @@ z2 = 0;
 ea0 = [q - qd; dq - dqd; z];
 
 n = 1;
-N = 30 * 1000;
+N = 80 * 1000;
 
 AM = zeros(1, N);
 XM = zeros(1, N);
 YM = zeros(1, N);
 XT = zeros(1, N);
 YT = zeros(1, N);
+DQ = zeros(1, N);
 
 interval = 0.5;
 while r > 0 && n < N
 
-    At = 10+30*sin(pi/4*t);
+    At = 60 * cos(pi/4*t);
 
     if (tf - t < interval)
         tf = tf + interval;
     end
 
-    [dr, dq, dtheta_m, dtheta_t, dw, dz, am] = Dynamic(r, q, theta_m, theta_t, z, w);
+    [dr, dq, dtheta_m, dtheta_t, am] = Dynamic(r, q, theta_m, theta_t);
 
     r = r + dr * dt;
     q = q + dq * dt;
     theta_m = theta_m + dtheta_m * dt;
     theta_t = theta_t + dtheta_t * dt;
-    w = w + dw * dt;
-    z = z + dz * dt;
     t = t + dt;
 
 
@@ -111,6 +110,7 @@ while r > 0 && n < N
     YM(n) = ym;
     XT(n) = xt;
     YT(n) = yt;
+    DQ(n) = dq;
 
 
     n = n + 1;
@@ -123,3 +123,5 @@ plot(AM(1:n-1), 'LineWidth', 2);
 figure(2);
 
 plot(XM(1:n-1), YM(1:n-1), XT(1:n-1), YT(1:n-1), 'LineWidth', 2);
+figure(3);
+plot(DQ(1:n-1), 'LineWidth', 2);
